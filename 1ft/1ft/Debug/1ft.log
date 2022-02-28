@@ -1,0 +1,3 @@
+﻿  main.cpp
+D:\Labs\6_сем\cosi\1ft\1ft\PiNum.h(16,20): warning C4305: инициализация: усечение из "double" в "float"
+  1ft.vcxproj -> D:\Labs\6_сем\cosi\1ft\1ft\Debug\1ft.exe
