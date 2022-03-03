@@ -139,10 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FT_Functions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PiNum.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FT_Functions.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="PiNum.h" />
     <ClInclude Include="resource.h" />
