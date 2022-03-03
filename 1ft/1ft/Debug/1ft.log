@@ -1,3 +1,8 @@
 ﻿  main.cpp
 D:\Labs\6_сем\cosi\1ft\1ft\PiNum.h(16,20): warning C4305: инициализация: усечение из "double" в "float"
+D:\Labs\6_сем\cosi\1ft\1ft\main.cpp(115,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Labs\6_сем\cosi\1ft\1ft\main.cpp(151,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Labs\6_сем\cosi\1ft\1ft\main.cpp(166,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Labs\6_сем\cosi\1ft\1ft\main.cpp(203,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Labs\6_сем\cosi\1ft\1ft\main.cpp(215,20): warning C4018: <: несоответствие типов со знаком и без знака
   1ft.vcxproj -> D:\Labs\6_сем\cosi\1ft\1ft\Debug\1ft.exe
