@@ -16,7 +16,7 @@ void dft_inverse(vector<complex<double>>& input, vector<double>& output);
 void fft_straight(vector<double> input, vector<complex<double>>& output);
 void fft_inverse(vector<complex<double>>& input, vector<double>& output);
 
-complex<double> DFT(int numberOfSample_k, vector<double>& samples);
-double IDFT(vector<complex<double>>& input, int numberOfSample_k);
+std::tuple<complex<double>, std::pair<int, int>> DFT(int numberOfSample_k, vector<double>& samples);
+std::tuple<double, std::pair<int, int>> IDFT(vector<complex<double>>& input, int numberOfSample_k);
 void FFT_AND_INVERS_FFT_TIME(vector<complex<double>>& a, bool invert);
 void FFT_AND_INVERS_FFT_FREQ(vector<complex<double>>& a, bool invert);
