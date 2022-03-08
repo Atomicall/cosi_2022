@@ -1,9 +1,9 @@
 ﻿  FT_Functions.cpp
 D:\Labs\6_сем\cosi\1ft\1ft\FT_Functions.cpp(14,20): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Labs\6_сем\cosi\1ft\1ft\FT_Functions.cpp(114,20): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Labs\6_сем\cosi\1ft\1ft\FT_Functions.cpp(126,17): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Labs\6_сем\cosi\1ft\1ft\FT_Functions.cpp(140,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Labs\6_сем\cosi\1ft\1ft\FT_Functions.cpp(116,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Labs\6_сем\cosi\1ft\1ft\FT_Functions.cpp(128,17): warning C4018: <: несоответствие типов со знаком и без знака
 D:\Labs\6_сем\cosi\1ft\1ft\FT_Functions.cpp(142,20): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Labs\6_сем\cosi\1ft\1ft\FT_Functions.cpp(152,20): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Labs\6_сем\cosi\1ft\1ft\FT_Functions.cpp(167,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Labs\6_сем\cosi\1ft\1ft\FT_Functions.cpp(144,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Labs\6_сем\cosi\1ft\1ft\FT_Functions.cpp(154,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Labs\6_сем\cosi\1ft\1ft\FT_Functions.cpp(169,20): warning C4018: <: несоответствие типов со знаком и без знака
   1ft.vcxproj -> D:\Labs\6_сем\cosi\1ft\1ft\Debug\1ft.exe
