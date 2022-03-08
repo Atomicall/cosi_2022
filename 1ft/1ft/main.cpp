@@ -1,4 +1,4 @@
-#define DBG
+//#define DBG
 #include "main.h"
 #include "FT_Functions.h"
 
@@ -53,11 +53,9 @@ int main()
 		}
 	vector<complex<double>> fromDFT;
 	vector<double> fromInvertedDFT;
-	//теряем минус на 4м
+
 	vector<complex<double>> fromFFT(signalFunctionY.size());
 	vector<double> fromInvertedFFT(signalFunctionY.size());
-	//считает херню
-	
 	dft_straight(signalFunctionY, fromDFT);
 	dft_inverse(fromDFT, fromInvertedDFT);
 	if (compareDoubles(signalFunctionY, fromInvertedDFT) == 1)
@@ -68,8 +66,7 @@ int main()
 	fft_inverse(fromFFT, fromInvertedFFT);
 	//if (compareDoubles(signalFunctionY, fromInvertedFFT) == 1) cout << "signalFunctionY == fromInvertedFFT\n";
 	if (compareDoubles(signalFunctionY, fromInvertedFFT) == 1) cout << "signalFunctionY == fromInvertedFFT\n";
-
-
+	writeToFIles(signalFunctionY, fromInvertedDFT, fromInvertedFFT, signalFunctionX);
 	}
 
 
