@@ -2,7 +2,7 @@
 #include "FT_Functions.h"
 #include <tuple>
 #define DBG
-#define F_FREQ
+#define F_TIME
 std::tuple<complex<double>, std::pair<int, int>> DFT(int numberOfSample_k, vector<double>& samples)
 	{
 	//https://ru.dsplib.org/dspl/group___d_f_t___g_r_o_u_p.html

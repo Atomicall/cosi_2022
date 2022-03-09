@@ -1,0 +1,2 @@
+D:\Labs\6_сем\cosi\1ft\1ft\x64\Debug\1ft.exe
+D:\Labs\6_сем\cosi\1ft\1ft\x64\Debug\1ft.pdb

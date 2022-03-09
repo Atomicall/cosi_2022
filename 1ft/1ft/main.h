@@ -65,3 +65,38 @@ void writeToFIles(vector<double>& fromY, vector<double>& fromIDFT, vector<double
 	file2.close();
 	file3.close();
 	}
+
+
+void writeComplexVector(vector<complex<double>>& what, std::ofstream& whereAmpl, std::ofstream& wherePhase, std::string header)
+	{
+	whereAmpl << "N;" << header << "\n";
+	wherePhase << "N;" << header << "\n";
+	for (size_t i = 0; i < what.size(); i++)
+		{
+		whereAmpl << i << ";" << std::abs(what[i]) << "\n";
+		wherePhase << i << ";" << std::arg(what[i]) << "\n";
+		}
+	}
+
+void writeAmplPhaseToFIles(vector<complex<double>>& dft, vector<complex<double>>& fft)
+	{
+	std::ifstream f1("amplDFT.csv");
+	std::ifstream f2("phaseDFT.csv");
+	std::ifstream f3("amplFFT.csv");
+	std::ifstream f4("phaseFFT.csv");
+	if (f1.good() || f2.good() || f3.good() || f4.good()) return;
+
+	std::ofstream file1("amplDFT.csv");
+	std::ofstream file2("phaseDFT.csv");
+	std::ofstream file3("amplFFT.csv");
+	std::ofstream file4("phaseFFT.csv");
+
+	writeComplexVector(dft, file1, file2, "DFT");
+	writeComplexVector(fft, file3, file4, "FFT");
+	file1.close();
+	file2.close();
+	file3.close();
+	file4.close();
+	}
+
+

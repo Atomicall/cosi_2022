@@ -67,6 +67,7 @@ int main()
 	//if (compareDoubles(signalFunctionY, fromInvertedFFT) == 1) cout << "signalFunctionY == fromInvertedFFT\n";
 	if (compareDoubles(signalFunctionY, fromInvertedFFT) == 1) cout << "signalFunctionY == fromInvertedFFT\n";
 	writeToFIles(signalFunctionY, fromInvertedDFT, fromInvertedFFT, signalFunctionX);
+	writeAmplPhaseToFIles(fromDFT, fromFFT);
 	}
 
 
