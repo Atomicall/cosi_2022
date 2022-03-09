@@ -1,4 +1,4 @@
-//#define DBG
+#define DBG
 #include "main.h"
 #include "FT_Functions.h"
 
