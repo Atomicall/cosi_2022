@@ -38,8 +38,7 @@ void doubleWrite(vector<double>& what, std::ofstream& where, std::string head)
 		where << std::fixed << what[i] << " ";
 		}
 	}
-
-void writeToFIles(vector<double>& X, vector<double>& Y, vector<double>& Z, vector<double>& Conv)
+void writeToFIles(vector<double>& X, vector<double>& Y, vector<double>& Z, vector<double>& Conv, vector<double>& Corr)
 	{
 	/*std::ifstream f1("fromY.csv");
 	std::ifstream f2("fromIDFT.csv");
@@ -50,16 +49,19 @@ void writeToFIles(vector<double>& X, vector<double>& Y, vector<double>& Z, vecto
 	std::ofstream file2("y.txt");
 	std::ofstream file3("z.txt");
 	std::ofstream file4("conv.txt");
+	std::ofstream file5("corr.txt");
 
 	doubleWrite(X, file1, "");
 	doubleWrite(Y, file2, "");
 	doubleWrite(Z, file3, "");
 	doubleWrite(Conv, file4, "");
+	doubleWrite(Corr, file5, "");
 	
 	file1.close();
 	file2.close();
 	file3.close();
 	file4.close();
+	file5.close();
 	}
 
 void conv(vector<double>& A, vector<double>& B, vector<double>& result)
@@ -83,27 +85,84 @@ void conv(vector<double>& A, vector<double>& B, vector<double>& result)
 			}
 		}
 	}
-//x
-void conv1(vector<double>& A, vector<double>& B, vector<double>& result)
+
+void corr(vector<double>& A, vector<double>& B, vector<double>& result)
 	{
-	//http://www.songho.ca/dsp/convolution/convolution.html
-	int nconv = A.size() + B.size() - 1;
-	int i, j, k, i1;
-
-	for (i = B.size() - 1; i < A.size(); ++i)
+	vector<double> a;
+	vector<double> b;
+	vector<double> bTemp(B);
+	size_t N = A.size();
+	size_t M = B.size();
+	a.resize(A.size() + M - 1, 0);
+	b.resize(B.size() + N - 1, 0);
+	for (size_t i = M - 1, j = 0; i < a.size(); i++, j++)
 		{
-		result[i] = 0;                        
-		for (j = i, k = 0; k < B.size(); --j, ++k)
-			result[i] += A[j] * B[k];
+		a[i] = A[j];
 		}
-
-	for (i = 0; i < B.size() -1; ++i)
+	std::reverse(bTemp.begin(), bTemp.end());
+	for (size_t i = 0; i < bTemp.size(); i++)
 		{
-		result[i] = 0;
-		for (j = i, k = 0; j >= 0; --j, ++k)
-			result[i] += A[j] * B[k];
+		b[i] = bTemp[i];
+		}
+	double res = 0.0;
+	for (size_t m = 0; m < N + M - 1; m++)
+		{
+		for (size_t i = 0; i < N + M - 1; i++)
+			{
+			res += a[i] * b[i];
+			}
+		result[m] = res;
+		res = 0.0;
+		for (size_t j = N+M-2; j > m; j--)
+			{
+			b[j] = b[j - 1];
+			}
+		b[m] = 0;
 		}
 	}
+
+
+void fft_time(vector<complex<double>>& arr)
+	{
+	const size_t N = arr.size();
+	if (N <= 1) return;
+
+	vector<complex<double>> even = arr[std::slice(0, N / 2, 2)];
+	vector<complex<double>> odd = arr[std::slice(1, N / 2, 2)];
+
+	fft_time(even);
+	fft_time(odd);
+
+	for (int j = 0; j < N / 2; j++)
+		{
+		complex<double> w = std::polar(1.0, -2 * M_PI * j / N) * odd[j];
+		arr[j] = even[j] + w;
+		arr[j + N / 2] = even[j] - w;
+		}
+	}
+
+void ifft(vector<complex<double>>& x)
+	{
+	// conjugate the complex numbers
+	for (auto it = x.begin(); it != x.end() ; it++)
+		{
+		*it = std::conj((*it));
+		}
+	// forward fft
+	fft_time(x);
+	// conjugate the complex numbers again
+	for (auto it = x.begin(); it != x.end(); it++)
+		{
+		*it = std::conj((*it));
+		}
+	// scale the numbers
+	x /= x.size();
+	for (auto it = x.begin(); it != x.end(); it++)
+		{
+		*it = *it / x.size();
+		}
+	}
+
 
 int main()
 	{
@@ -123,11 +182,30 @@ int main()
 #endif
 		}
 
-	vector<double> XYConv(functionY.size() + functionZ.size());
+	vector<double> XYConv(functionY.size() + functionZ.size()-1);
+	vector<double> XYCorr(functionY.size() + functionZ.size()-1);
+
 	conv(functionY, functionZ, XYConv);
-	writeToFIles(signalFunctionX, functionY, functionZ, XYConv);
+	corr(functionY, functionZ, XYCorr);
+
+	writeToFIles(signalFunctionX, functionY, functionZ, XYConv, XYCorr);
 #ifdef DBG
-	for (int i=0; i< XYConv.size(); i++)
-	std::cout << "XYConv " << XYConv[i] << " \n";
+	std::cout << "XYConv " << "\n";
+	for (int i = 0; i < XYConv.size(); i++)
+		{
+		std::cout << XYConv[i] << " ; ";
+		if (!(i%3))	std::cout << "\n";
+		}
+	std::cout << "\n";
+#endif
+
+#ifdef DBG
+	std::cout << "XYCorrelatoin " << "\n";
+	for (int i = 0; i < XYCorr.size(); i++)
+		{
+		std::cout << XYCorr[i] << " ; ";
+		if (!(i % 3))	std::cout << "\n";
+		}
+	std::cout << "\n";
 #endif
 	}
